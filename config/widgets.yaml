@@ -1,0 +1,27 @@
+---
+# 위젯 설정: https://gethomepage.dev/configs/info-widgets/
+
+- datetime:
+    format:
+        timeStyle: short
+        dateStyle: short
+        hour12: false
+
+- search:
+    provider: google
+    target: _blank
+
+- resources:
+    label: 서버
+    cpu: true
+    memory: true
+
+- synology:
+    label: NAS
+    url: http://<시놀로지-IP>:5000
+    username: <관리자-계정>
+    password: <비밀번호>
+    cpu: true
+    mem: true
+    storage: true
+    temp: true

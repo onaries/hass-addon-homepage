@@ -1,0 +1,15 @@
+name: "Homepage Dashboard"
+description: "A highly customizable dashboard for your home server."
+version: "1.0.0"
+slug: "homepage_dashboard"
+arch:
+  - aarch64
+  - amd64
+init: false
+ingress: true
+ingress_port: 3000
+panel_icon: "mdi:view-dashboard"
+map:
+  - config:rw
+options: {}
+schema: {}

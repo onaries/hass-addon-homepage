@@ -1,0 +1,64 @@
+---
+# 서비스 설정: https://gethomepage.dev/configs/services/
+
+- 인프라 관리:
+    - Synology:
+        icon: synology.png
+        href: http://<시놀로지-IP>
+        description: 네트워크 저장소(NAS)
+        # 시놀로지 위젯은 추가 설정이 필요하므로 기본 링크로 설정
+
+    - Portainer:
+        icon: portainer.png
+        href: http://<포테이너-IP>:9000
+        description: 컨테이너 관리 UI
+        widget:
+            type: portainer
+            url: http://<포테이너-IP>:9000
+            env: 1 # 기본 환경 ID
+            key: YOUR_PORTAINER_API_KEY
+
+    - Komodo:
+        icon: komodo.png # 전용 아이콘이 없을 경우 기본 설정
+        href: http://<코모도-IP>:9123
+        description: 배포 및 패키지 관리
+
+- 네트워크 & 보안:
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: http://<NPM-IP>:81
+        description: 리버스 프록시 및 SSL 관리
+        widget:
+            type: npm
+            url: http://<NPM-IP>:81
+            username: YOUR_EMAIL
+            password: YOUR_PASSWORD
+
+    - AdGuard Home:
+        icon: adguard-home.png
+        href: http://<애드가드-IP>
+        description: DNS 기반 광고 차단
+        widget:
+            type: adguard
+            url: http://<애드가드-IP>
+            username: admin
+            password: password
+
+- 개발 및 스마트홈:
+    - Gitea:
+        icon: gitea.png
+        href: http://<기티-IP>:3000
+        description: 로컬 Git 저장소
+        widget:
+            type: gitea
+            url: http://<기티-IP>:3000
+            key: YOUR_GITEA_TOKEN
+
+    - Home Assistant:
+        icon: home-assistant.png
+        href: http://homeassistant.local:8123
+        description: 가정용 자동화 플랫폼
+        widget:
+            type: homeassistant
+            url: http://homeassistant.local:8123
+            key: YOUR_HOME_ASSISTANT_TOKEN
