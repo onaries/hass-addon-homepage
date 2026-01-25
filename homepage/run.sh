@@ -1,17 +1,13 @@
 #!/bin/sh
 
-# The directory where Home Assistant stores configuration
-HA_CONFIG_DIR="/config/homepage"
-# The directory where the app expects its configuration
-APP_CONFIG_DIR="/app/config"
-# Home Assistant addon options file
 OPTIONS_FILE="/data/options.json"
+HA_CONFIG_DIR="/config/homepage"
+APP_CONFIG_DIR="/app/config"
 
-echo "Starting Homepage Add-on..."
+echo "Starting Homepage..."
 
-# Load secrets from addon options and export as HOMEPAGE_VAR_*
 if [ -f "$OPTIONS_FILE" ]; then
-    echo "Loading secrets from addon configuration..."
+    echo "Running in Home Assistant addon mode..."
     
     NPM_USERNAME=$(jq -r '.npm_username // empty' "$OPTIONS_FILE")
     NPM_PASSWORD=$(jq -r '.npm_password // empty' "$OPTIONS_FILE")
@@ -29,24 +25,19 @@ if [ -f "$OPTIONS_FILE" ]; then
     [ -n "$SYNOLOGY_USERNAME" ] && export HOMEPAGE_VAR_SYNOLOGY_USERNAME="$SYNOLOGY_USERNAME"
     [ -n "$SYNOLOGY_PASSWORD" ] && export HOMEPAGE_VAR_SYNOLOGY_PASSWORD="$SYNOLOGY_PASSWORD"
     
-    echo "Secrets loaded successfully."
+    if [ ! -d "$HA_CONFIG_DIR" ]; then
+        mkdir -p "$HA_CONFIG_DIR"
+        cp -rn /app/config_defaults/* "$HA_CONFIG_DIR/"
+    fi
+    
+    rm -rf "$APP_CONFIG_DIR"
+    ln -s "$HA_CONFIG_DIR" "$APP_CONFIG_DIR"
+else
+    echo "Running in standalone mode..."
+    if [ ! -d "$APP_CONFIG_DIR" ] || [ -z "$(ls -A $APP_CONFIG_DIR 2>/dev/null)" ]; then
+        mkdir -p "$APP_CONFIG_DIR"
+        cp -rn /app/config_defaults/* "$APP_CONFIG_DIR/"
+    fi
 fi
 
-# 1. Initialize configuration if it doesn't exist
-if [ ! -d "$HA_CONFIG_DIR" ]; then
-    echo "Creating persistent configuration directory at $HA_CONFIG_DIR"
-    mkdir -p "$HA_CONFIG_DIR"
-    # Copy default configs from the image to the persistent volume
-    cp -rn /app/config_defaults/* "$HA_CONFIG_DIR/"
-fi
-
-# 2. Ensure the app uses the persistent volume
-# Remove the existing config directory/link and create a new symlink
-rm -rf "$APP_CONFIG_DIR"
-ln -s "$HA_CONFIG_DIR" "$APP_CONFIG_DIR"
-
-echo "Configuration linked to $HA_CONFIG_DIR"
-
-# 3. Start the original homepage application
-# Based on the official homepage image, the entry point is node server.js
 exec node server.js
