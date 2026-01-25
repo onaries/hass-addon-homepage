@@ -1,6 +1,7 @@
 FROM ghcr.io/gethomepage/homepage:latest
 
-# Set environment variables
+RUN apk add --no-cache jq
+
 ENV NODE_ENV=production
 
 # Copy our local config to a defaults directory
