@@ -11,8 +11,13 @@ ingress: true
 ingress_port: 3000
 panel_icon: "mdi:view-dashboard"
 map:
-  - config:rw
+  - addon_config:rw
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "Homepage 웹 인터페이스"
 options:
+  port: 3000
   npm_username: ""
   npm_password: ""
   portainer_key: ""
@@ -21,6 +26,7 @@ options:
   synology_username: ""
   synology_password: ""
 schema:
+  port: port
   npm_username: str?
   npm_password: str?
   portainer_key: str?

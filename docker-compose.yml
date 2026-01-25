@@ -1,14 +1,11 @@
 services:
   homepage:
-    image: ghcr.io/gethomepage/homepage:latest
+    build: ./homepage
     container_name: homepage
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: localhost,127.0.0.1,oracle2:3002
-      PUID: 501
-      PGID: 20
+      HOMEPAGE_ALLOWED_HOSTS: "*"
     ports:
       - 3002:3000
     volumes:
-      - ./homepage/config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
