@@ -1,7 +1,7 @@
 .PHONY: up down logs build push tag clean sync
 
 IMAGE := ksw8954/homepage-dashboard
-VERSION := $(shell grep '^version:' config.yaml | sed 's/version: *"\(.*\)"/\1/')
+VERSION := $(shell grep '^version:' homepage/config.yaml | sed 's/version: *"\(.*\)"/\1/')
 
 up:
 	docker compose up -d
@@ -13,7 +13,7 @@ logs:
 	docker compose logs -f
 
 build:
-	docker build -t $(IMAGE):$(VERSION) -t $(IMAGE):latest .
+	docker build -t $(IMAGE):$(VERSION) -t $(IMAGE):latest homepage/
 
 push:
 	docker push $(IMAGE):$(VERSION)
