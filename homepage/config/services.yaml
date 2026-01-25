@@ -16,7 +16,7 @@
           type: portainer
           url: http://192.168.200.101:9000
           env: 1 # 기본 환경 ID
-          key: { { HOMEPAGE_VAR_PORTAINER_KEY } }
+          key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
 
     - Komodo:
         icon: komodo.png # 전용 아이콘이 없을 경우 기본 설정
@@ -31,8 +31,8 @@
         widget:
           type: npm
           url: https://192.168.200.101:82
-          username: { { HOMEPAGE_VAR_NPM_USERNAME } }
-          password: { { HOMEPAGE_VAR_NPM_PASSWORD } }
+          username: {{HOMEPAGE_VAR_NPM_USERNAME}}
+          password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
 
     - AdGuard Home:
         icon: adguard-home.png
@@ -52,4 +52,4 @@
         widget:
           type: homeassistant
           url: http://homeassistant.local:8123
-          key: { { HOMEPAGE_VAR_HA_TOKEN } }
+          key: {{HOMEPAGE_VAR_HA_TOKEN}}
