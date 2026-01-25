@@ -1,6 +1,6 @@
 name: "Homepage Dashboard"
 description: "A highly customizable dashboard for your home server."
-version: "1.0.1-a1"
+version: "1.0.1-a2"
 slug: "homepage_dashboard"
 image: ksw8954/homepage-dashboard
 arch:
@@ -18,6 +18,8 @@ ports_description:
   3000/tcp: "Homepage 웹 인터페이스"
 options:
   port: 3000
+  allowed_hosts: "*"
+  reset_config: false
   npm_username: ""
   npm_password: ""
   portainer_key: ""
@@ -27,6 +29,8 @@ options:
   synology_password: ""
 schema:
   port: port
+  allowed_hosts: str
+  reset_config: bool
   npm_username: str?
   npm_password: str?
   portainer_key: str?

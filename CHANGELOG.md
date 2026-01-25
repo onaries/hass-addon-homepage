@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1-a2] - 2025-01-25
+
+### Added
+- `allowed_hosts` 옵션: HOMEPAGE_ALLOWED_HOSTS 환경변수 설정 가능
+- `reset_config` 옵션: `true` 설정 시 config 초기화 후 기본값으로 재설정
+
+### Fixed
+- 애드온 config 경로 수정 (`addon_config:rw` 사용)
+- config 파일이 기본값 대신 커스텀 설정 적용되지 않던 문제 해결
+
 ## [1.0.1-a1] - 2025-01-25
 
 ### Changed
@@ -44,5 +54,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gitea
 - Home Assistant
 
+[1.0.1-a2]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a2
 [1.0.1-a1]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a1
 [1.0.0]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.0
