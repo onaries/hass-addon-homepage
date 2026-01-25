@@ -27,8 +27,8 @@
 - synology:
     label: NAS
     url: http://192.168.200.100:5000
-    username: {{HOMEPAGE_VAR_SYNOLOGY_USERNAME}}
-    password: {{HOMEPAGE_VAR_SYNOLOGY_PASSWORD}}
+    username: "{{HOMEPAGE_VAR_SYNOLOGY_USERNAME}}"
+    password: "{{HOMEPAGE_VAR_SYNOLOGY_PASSWORD}}"
     cpu: true
     mem: true
     storage: true
