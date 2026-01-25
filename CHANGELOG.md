@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-01-25
+## [1.0.1-a1] - 2025-01-25
+
+### Changed
+- 프로젝트 구조 변경: 애드온 파일을 `homepage/` 하위 디렉터리로 이동
+- HA 애드온 저장소 형식 준수 (`repository.yaml` 추가)
+
+### Fixed
+- `jq` 패키지 누락 문제 해결
+- 독립 실행 모드 지원 (HA 외부에서 docker-compose로 테스트 가능)
+
+### CI
+- Pre-release 태그 빌드 지원 (`v1.0.1-a1` 형식)
+- Pre-release 시 `latest` 태그 업데이트 방지
+
+## [1.0.0] - 2025-01-25
 
 ### Added
 - Home Assistant Add-on 지원
@@ -30,4 +44,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gitea
 - Home Assistant
 
-[1.0.0]: https://github.com/ksw8954/homepage-server/releases/tag/v1.0.0
+[1.0.1-a1]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a1
+[1.0.0]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.0

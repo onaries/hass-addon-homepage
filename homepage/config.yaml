@@ -1,6 +1,6 @@
 name: "Homepage Dashboard"
 description: "A highly customizable dashboard for your home server."
-version: "1.0.0"
+version: "1.0.1-a1"
 slug: "homepage_dashboard"
 image: ksw8954/homepage-dashboard
 arch:
