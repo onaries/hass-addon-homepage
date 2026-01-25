@@ -4,8 +4,33 @@
 HA_CONFIG_DIR="/config/homepage"
 # The directory where the app expects its configuration
 APP_CONFIG_DIR="/app/config"
+# Home Assistant addon options file
+OPTIONS_FILE="/data/options.json"
 
 echo "Starting Homepage Add-on..."
+
+# Load secrets from addon options and export as HOMEPAGE_VAR_*
+if [ -f "$OPTIONS_FILE" ]; then
+    echo "Loading secrets from addon configuration..."
+    
+    NPM_USERNAME=$(jq -r '.npm_username // empty' "$OPTIONS_FILE")
+    NPM_PASSWORD=$(jq -r '.npm_password // empty' "$OPTIONS_FILE")
+    PORTAINER_KEY=$(jq -r '.portainer_key // empty' "$OPTIONS_FILE")
+    HA_TOKEN=$(jq -r '.homeassistant_token // empty' "$OPTIONS_FILE")
+    GITEA_TOKEN=$(jq -r '.gitea_token // empty' "$OPTIONS_FILE")
+    SYNOLOGY_USERNAME=$(jq -r '.synology_username // empty' "$OPTIONS_FILE")
+    SYNOLOGY_PASSWORD=$(jq -r '.synology_password // empty' "$OPTIONS_FILE")
+    
+    [ -n "$NPM_USERNAME" ] && export HOMEPAGE_VAR_NPM_USERNAME="$NPM_USERNAME"
+    [ -n "$NPM_PASSWORD" ] && export HOMEPAGE_VAR_NPM_PASSWORD="$NPM_PASSWORD"
+    [ -n "$PORTAINER_KEY" ] && export HOMEPAGE_VAR_PORTAINER_KEY="$PORTAINER_KEY"
+    [ -n "$HA_TOKEN" ] && export HOMEPAGE_VAR_HA_TOKEN="$HA_TOKEN"
+    [ -n "$GITEA_TOKEN" ] && export HOMEPAGE_VAR_GITEA_TOKEN="$GITEA_TOKEN"
+    [ -n "$SYNOLOGY_USERNAME" ] && export HOMEPAGE_VAR_SYNOLOGY_USERNAME="$SYNOLOGY_USERNAME"
+    [ -n "$SYNOLOGY_PASSWORD" ] && export HOMEPAGE_VAR_SYNOLOGY_PASSWORD="$SYNOLOGY_PASSWORD"
+    
+    echo "Secrets loaded successfully."
+fi
 
 # 1. Initialize configuration if it doesn't exist
 if [ ! -d "$HA_CONFIG_DIR" ]; then

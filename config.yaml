@@ -2,6 +2,7 @@ name: "Homepage Dashboard"
 description: "A highly customizable dashboard for your home server."
 version: "1.0.0"
 slug: "homepage_dashboard"
+image: ksw8954/homepage-dashboard
 arch:
   - aarch64
   - amd64
@@ -11,5 +12,19 @@ ingress_port: 3000
 panel_icon: "mdi:view-dashboard"
 map:
   - config:rw
-options: {}
-schema: {}
+options:
+  npm_username: ""
+  npm_password: ""
+  portainer_key: ""
+  homeassistant_token: ""
+  gitea_token: ""
+  synology_username: ""
+  synology_password: ""
+schema:
+  npm_username: str?
+  npm_password: str?
+  portainer_key: str?
+  homeassistant_token: str?
+  gitea_token: str?
+  synology_username: str?
+  synology_password: str?

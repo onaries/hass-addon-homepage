@@ -3,11 +3,11 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: localhost,127.0.0.1
+      HOMEPAGE_ALLOWED_HOSTS: localhost,127.0.0.1,oracle2:3002
       PUID: 501
       PGID: 20
     ports:
-      - 3000:3000
+      - 3002:3000
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro

@@ -1,11 +1,19 @@
 ---
 # 위젯 설정: https://gethomepage.dev/configs/info-widgets/
 
+- openmeteo:
+    label: 울산
+    latitude: 35.538376
+    longitude: 129.311356
+    timezone: Asia/Seoul
+    units: metric
+    cache: 5
+
 - datetime:
     format:
-        timeStyle: short
-        dateStyle: short
-        hour12: false
+      timeStyle: short
+      dateStyle: short
+      hour12: false
 
 - search:
     provider: google
@@ -18,9 +26,9 @@
 
 - synology:
     label: NAS
-    url: http://<시놀로지-IP>:5000
-    username: <관리자-계정>
-    password: <비밀번호>
+    url: http://192.168.200.100:5000
+    username: {{HOMEPAGE_VAR_SYNOLOGY_USERNAME}}
+    password: {{HOMEPAGE_VAR_SYNOLOGY_PASSWORD}}
     cpu: true
     mem: true
     storage: true
