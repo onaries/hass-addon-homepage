@@ -27,6 +27,9 @@ options:
   gitea_token: ""
   synology_username: ""
   synology_password: ""
+  uptime_slug: ""
+  adguard_username: ""
+  adguard_password: ""
 schema:
   port: port
   allowed_hosts: str
@@ -38,3 +41,6 @@ schema:
   gitea_token: str?
   synology_username: str?
   synology_password: str?
+  uptime_slug: str?
+  adguard_username: str?
+  adguard_password: str?

@@ -19,6 +19,9 @@ if [ -f "$OPTIONS_FILE" ]; then
     GITEA_TOKEN=$(jq -r '.gitea_token // empty' "$OPTIONS_FILE")
     SYNOLOGY_USERNAME=$(jq -r '.synology_username // empty' "$OPTIONS_FILE")
     SYNOLOGY_PASSWORD=$(jq -r '.synology_password // empty' "$OPTIONS_FILE")
+    UPTIME_SLUG=$(jq -r '.uptime_slug // empty' "$OPTIONS_FILE")
+    ADGUARD_USERNAME=$(jq -r '.adguard_username // empty' "$OPTIONS_FILE")
+    ADGUARD_PASSWORD=$(jq -r '.adguard_password // empty' "$OPTIONS_FILE")
     
     export PORT="$PORT"
     export HOMEPAGE_ALLOWED_HOSTS="$ALLOWED_HOSTS"
@@ -29,6 +32,9 @@ if [ -f "$OPTIONS_FILE" ]; then
     [ -n "$GITEA_TOKEN" ] && export HOMEPAGE_VAR_GITEA_TOKEN="$GITEA_TOKEN"
     [ -n "$SYNOLOGY_USERNAME" ] && export HOMEPAGE_VAR_SYNOLOGY_USERNAME="$SYNOLOGY_USERNAME"
     [ -n "$SYNOLOGY_PASSWORD" ] && export HOMEPAGE_VAR_SYNOLOGY_PASSWORD="$SYNOLOGY_PASSWORD"
+    [ -n "$UPTIME_SLUG" ] && export HOMEPAGE_VAR_UPTIME_SLUG="$UPTIME_SLUG"
+    [ -n "$ADGUARD_USERNAME" ] && export HOMEPAGE_VAR_ADGUARD_USERNAME="$ADGUARD_USERNAME"
+    [ -n "$ADGUARD_PASSWORD" ] && export HOMEPAGE_VAR_ADGUARD_PASSWORD="$ADGUARD_PASSWORD"
     
     if [ "$RESET_CONFIG" = "true" ] || [ ! -d "$ADDON_CONFIG_DIR" ] || [ -z "$(ls -A $ADDON_CONFIG_DIR 2>/dev/null)" ]; then
         echo "Initializing config at $ADDON_CONFIG_DIR"

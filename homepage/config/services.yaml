@@ -36,13 +36,13 @@
 
     - AdGuard Home:
         icon: adguard-home.png
-        href: http://<애드가드-IP>
+        href: http://adguard.sno.moe
         description: DNS 기반 광고 차단
         widget:
           type: adguard
-          url: http://<애드가드-IP>
-          username: admin
-          password: password
+          url: http://a0d7b954-adguard
+          username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
 
     - Uptime Kuma:
         icon: uptime-kuma.png
@@ -51,7 +51,7 @@
         widget:
           type: uptimekuma
           url: http://192.168.200.101:3001
-          slug: status
+          slug: "{{HOMEPAGE_VAR_UPTIME_SLUG}}"
 
 - 개발 및 스마트홈:
     - Home Assistant:
