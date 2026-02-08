@@ -98,3 +98,10 @@
           type: homeassistant
           url: http://homeassistant.local:8123
           key: "{{HOMEPAGE_VAR_HA_TOKEN}}"
+          custom:
+            - template: "{{ states.person|selectattr('state','equalto','home')|list|length }}"
+              label: 집에 있는 사람
+            - template: "{{ states.light|selectattr('state','equalto','on')|list|length }}"
+              label: 켜진 조명
+            - template: "{{ states.sensor|selectattr('attributes.device_class','defined')|selectattr('attributes.device_class','equalto','power')|map(attribute='state')|map('float',0)|sum|round(1) }}"
+              label: 전력 사용량 (W)
