@@ -30,6 +30,13 @@ options:
   uptime_slug: ""
   adguard_username: ""
   adguard_password: ""
+  komodo_url: ""
+  komodo_key: ""
+  komodo_secret: ""
+  qbittorrent_url: ""
+  qbittorrent_username: ""
+  qbittorrent_password: ""
+  github_token: ""
 schema:
   port: port
   allowed_hosts: str
@@ -44,3 +51,10 @@ schema:
   uptime_slug: str?
   adguard_username: str?
   adguard_password: str?
+  komodo_url: str?
+  komodo_key: str?
+  komodo_secret: str?
+  qbittorrent_url: str?
+  qbittorrent_username: str?
+  qbittorrent_password: str?
+  github_token: str?
