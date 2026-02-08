@@ -45,7 +45,7 @@
         description: DNS 기반 광고 차단
         widget:
           type: adguard
-          url: http://a0d7b954-adguard
+          url: http://192.168.200.101:3080
           username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
           password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
 
