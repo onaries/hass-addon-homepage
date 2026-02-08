@@ -1,0 +1,30 @@
+#!/bin/sh
+# pre-push hook: git tag push 시 config.yaml 버전 + CHANGELOG.md 검증
+
+while read local_ref local_sha remote_ref remote_sha; do
+    # 태그 push만 검증
+    case "$local_ref" in
+        refs/tags/v*)
+            tag_ver=$(echo "$local_ref" | sed 's|refs/tags/v||')
+
+            cfg_ver=$(grep '^version:' homepage/config.yaml | sed 's/version: *"\(.*\)"/\1/')
+            if [ "$cfg_ver" != "$tag_ver" ]; then
+                echo "ERROR: config.yaml version ($cfg_ver) != tag version ($tag_ver)"
+                echo "  homepage/config.yaml 의 version을 $tag_ver 로 수정하세요."
+                git tag -d "v$tag_ver" 2>/dev/null && echo "  로컬 태그 v$tag_ver 자동 삭제됨"
+                exit 1
+            fi
+
+            if ! grep -q "\[$tag_ver\]" CHANGELOG.md; then
+                echo "ERROR: CHANGELOG.md has no entry for version $tag_ver"
+                echo "  CHANGELOG.md 에 [$tag_ver] 항목을 추가하세요."
+                git tag -d "v$tag_ver" 2>/dev/null && echo "  로컬 태그 v$tag_ver 자동 삭제됨"
+                exit 1
+            fi
+
+            echo "OK: config.yaml ($cfg_ver) + CHANGELOG.md verified for v$tag_ver"
+            ;;
+    esac
+done
+
+exit 0
