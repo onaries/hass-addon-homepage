@@ -1,7 +1,11 @@
-.PHONY: up down logs build push tag clean sync
+.PHONY: up down logs build push tag clean sync init
 
 IMAGE := ksw8954/homepage-dashboard
 VERSION := $(shell grep '^version:' homepage/config.yaml | sed 's/version: *"\(.*\)"/\1/')
+
+init:
+	git config core.hooksPath .githooks
+	@echo "Git hooks configured (.githooks/)"
 
 up:
 	docker compose up -d
@@ -20,8 +24,8 @@ push:
 	docker push $(IMAGE):latest
 
 tag:
-	@read -p "Version (current: $(VERSION)): " v; \
-	git tag "v$$v" && git push origin "v$$v"
+	@echo "Tagging v$(VERSION) ..."
+	git tag "v$(VERSION)" && git push origin "v$(VERSION)"
 
 clean:
 	docker compose down -v --rmi local

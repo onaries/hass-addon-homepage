@@ -10,9 +10,10 @@
     cache: 5
 
 - datetime:
+    locale: ko
     format:
       timeStyle: short
-      dateStyle: short
+      dateStyle: full
       hour12: false
 
 - search:

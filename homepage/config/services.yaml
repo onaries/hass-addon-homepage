@@ -19,9 +19,14 @@
           key: "{{HOMEPAGE_VAR_PORTAINER_KEY}}"
 
     - Komodo:
-        icon: komodo.png # 전용 아이콘이 없을 경우 기본 설정
+        icon: komodo.png
         href: https://komodo.sno.moe
         description: 배포 및 패키지 관리
+        widget:
+          type: komodo
+          url: "{{HOMEPAGE_VAR_KOMODO_URL}}"
+          key: "{{HOMEPAGE_VAR_KOMODO_KEY}}"
+          secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
 
 - 네트워크 & 보안:
     - Nginx Proxy Manager:
@@ -36,13 +41,13 @@
 
     - AdGuard Home:
         icon: adguard-home.png
-        href: http://<애드가드-IP>
+        href: http://adguard.sno.moe
         description: DNS 기반 광고 차단
         widget:
           type: adguard
-          url: http://<애드가드-IP>
-          username: admin
-          password: password
+          url: http://192.168.200.101:3080
+          username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
 
     - Uptime Kuma:
         icon: uptime-kuma.png
@@ -51,9 +56,40 @@
         widget:
           type: uptimekuma
           url: http://192.168.200.101:3001
-          slug: status
+          slug: "{{HOMEPAGE_VAR_UPTIME_SLUG}}"
+
+- 미디어 & 다운로드:
+    - qBittorrent:
+        icon: qbittorrent.png
+        href: https://qbit.sno.moe
+        description: 토렌트 다운로드 클라이언트
+        widget:
+          type: qbittorrent
+          url: "{{HOMEPAGE_VAR_QBIT_URL}}"
+          username: "{{HOMEPAGE_VAR_QBIT_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_QBIT_PASSWORD}}"
 
 - 개발 및 스마트홈:
+    - GitHub:
+        icon: github.png
+        href: https://github.com
+        description: GitHub 프로필 요약
+        widget:
+          type: customapi
+          url: https://api.github.com/user
+          headers:
+            Authorization: "Bearer {{HOMEPAGE_VAR_GITHUB_TOKEN}}"
+          mappings:
+            - field: public_repos
+              label: 공개 레포
+              format: number
+            - field: owned_private_repos
+              label: 비공개 레포
+              format: number
+            - field: followers
+              label: 팔로워
+              format: number
+
     - Home Assistant:
         icon: home-assistant.png
         href: https://hass.sno.moe
@@ -62,3 +98,10 @@
           type: homeassistant
           url: http://homeassistant.local:8123
           key: "{{HOMEPAGE_VAR_HA_TOKEN}}"
+          custom:
+            - template: "{{ states.person|selectattr('state','equalto','home')|list|length }}"
+              label: 집에 있는 사람
+            - template: "{{ states.light|selectattr('state','equalto','on')|list|length }}"
+              label: 켜진 조명
+            - template: "{{ states.sensor|selectattr('attributes.device_class','defined')|selectattr('attributes.device_class','equalto','power')|map(attribute='state')|map('float',0)|sum|round(1) }}"
+              label: 전력 사용량 (W)

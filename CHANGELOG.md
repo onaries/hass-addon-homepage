@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3-a1] - 2026-02-08
+
+### Added
+- Komodo 위젯 추가 (API key/secret 기반 연동)
+- qBittorrent 위젯 추가 (미디어 & 다운로드 카테고리)
+- GitHub 프로필 위젯 추가 (customapi — 공개/비공개 레포 수, 팔로워)
+- Home Assistant 위젯 커스텀 템플릿 (집에 있는 사람, 켜진 조명, 전력 사용량 합산)
+- 북마크에 2026 가계부 (Google Sheets) 링크 추가
+- HA 애드온 옵션 추가: `komodo_url`, `komodo_key`, `komodo_secret`, `qbittorrent_url`, `qbittorrent_username`, `qbittorrent_password`, `github_token`
+
+### Changed
+- datetime 위젯 locale을 `ko`로 설정, dateStyle을 `full`로 변경
+- README.md 전면 개편 (서비스 테이블, 북마크 목록, HA 설정 가이드, 폴더 구조)
+- AGENTS.md 신규 작성
+
+## [1.0.2-a1] - 2026-01-26
+
+### Added
+- AdGuard 및 Uptime-Kuma 슬러그 환경변수 추가 (`HOMEPAGE_VAR_ADGUARD_SLUG`, `HOMEPAGE_VAR_UPTIME_KUMA_SLUG`)
+
 ## [1.0.1-a3] - 2025-01-25
 
 ### Added
@@ -62,6 +82,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gitea
 - Home Assistant
 
+[1.0.3-a1]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.3-a1
+[1.0.2-a1]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.2-a1
 [1.0.1-a3]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a3
 [1.0.1-a2]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a2
 [1.0.1-a1]: https://github.com/onaries/hass-addon-homepage/releases/tag/v1.0.1-a1
